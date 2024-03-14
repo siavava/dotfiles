@@ -1,5 +1,7 @@
 # ignore everything
 *
+# */
+
 
 # except for these files
 !.gitignore
@@ -13,7 +15,10 @@
 !.nuxtrc
 !pubring.kbx
 !.chktexrc
-
 !.bash_aliases
 !.bashrc
 !.bash_profile
+
+# include common tex files
+!latex-common
+!latex-common/*
