@@ -13,7 +13,7 @@
 !.condarc
 !.vimrc
 !.nuxtrc
-!pubring.kbx
+!gpg.key
 !.chktexrc
 !.bash_aliases
 !.bashrc
