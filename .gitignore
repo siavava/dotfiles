@@ -22,3 +22,6 @@
 # include common tex files
 !latex-common
 !latex-common/*
+
+!config.fish
+!alias.fish

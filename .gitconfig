@@ -1,28 +1,32 @@
-[init]
-	defaultBranch = main
 [user]
 	name = siavava
 	email = amittaijoel@outlook.com
 	signingkey = 35F03516A20DD95C
-[credential]
-	password = kJDXDYk*3
+
 [commit]
 	gpgsign = true
 	template = ~/.gitmessage
+
 [init]
 	defaultBranch = main
+
 [core]
   editor = vim
 	pager = less -R
  	mergeoptions = --no-edit
+
 [gpg]
 	program = gpg
-# [receive]
-# 	advertisePushOptions = true
+
+[receive]
+	advertisePushOptions = true
+
 [alias]
 	ac = commit -am
+
 [pull]
 	rebase = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
