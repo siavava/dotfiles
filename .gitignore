@@ -1,0 +1,19 @@
+# ignore everything
+*
+
+# except for these files
+!.gitignore
+!.gitmessage
+!.gitconfig
+!README.md
+!.bash_aliases
+!.zshrc
+!.condarc
+!.vimrc
+!.nuxtrc
+!pubring.kbx
+!.chktexrc
+
+!.bash_aliases
+!.bashrc
+!.bash_profile
