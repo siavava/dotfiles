@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# -*- mode: fish; -*-
+# -*- coding: utf8; -*-
 
 ############################################
 # ALIASES

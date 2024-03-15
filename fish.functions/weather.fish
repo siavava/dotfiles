@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# -*- encoding: utf-8; -*-
+# -*- coding: utf-8; -*-
 
 function weather
   # if no argument, print for Hanover, NH.
