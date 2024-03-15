@@ -17,10 +17,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 zoxide init fish --cmd cd | source
 
 # command aliases
-source "alias.fish"
+source "$HOME/alias.fish"
 
 # prompt change
-source "prompt.fish"
+source "$HOME/prompt.fish"
 
 # app exports
-source "exports.fish"
+source "$HOME/exports.fish"
