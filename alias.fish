@@ -16,3 +16,5 @@ alias echo 'echo -e'
 # friendly `ls`
 alias lt='ls -s -F -h -1'
 
+# search previous commands
+alias search='history | grep'
