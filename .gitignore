@@ -25,6 +25,7 @@
 
 !config.fish
 !alias.fish
+!exports.fish
 
 !fish.functions
 !fish.functions/*
