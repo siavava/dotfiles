@@ -33,3 +33,7 @@
 
 fish.functions/fisher.fish
 fish.functions/*nvm*
+
+
+!globals
+!globals/*

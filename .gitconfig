@@ -14,6 +14,7 @@
   editor = vim
 	pager = less -R
  	mergeoptions = --no-edit
+	excludesfile = ~/globals/.gitignore
 
 [gpg]
 	program = gpg
