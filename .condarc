@@ -4,3 +4,5 @@ changeps1: false
 auto_activate_base: true
 
 auto_stack: 1
+channels:
+  - defaults

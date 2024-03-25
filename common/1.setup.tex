@@ -1,0 +1,374 @@
+\leading{13pt}
+% no linebreaks inside equations
+\relpenalty=10000
+\binoppenalty=10000
+\overfullrule5pt\relax
+
+% we have some pretty huge multiline displays, so...
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use mathtools equation numbering utilities
+
+% let \[ and \] be the same as \begin{equation} and \end{equation}
+\makeatletter
+\AtBeginDocument{%
+  \let\[\@undefined
+  \DeclareRobustCommand{\[}{\begin{equation}}%
+  \let\]\@undefined
+  \DeclareRobustCommand{\]}{\end{equation}}%
+}
+\makeatother
+% but only print equation numbers if needed
+\mathtoolsset{showonlyrefs,showmanualtags}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set up hyperref
+
+\hypersetup{
+  colorlinks, 
+  linkcolor=-red!75!green!50, 
+  citecolor=-red!75!green!50,
+  urlcolor=green!30!black
+}
+
+% set up PDF bookmarks to the first and last pages, for convenience
+\AtBeginDocument{%
+  \clearpage
+  \bookmark[level=1, named=FirstPage]{Cover page}%
+}
+\BookmarkAtEnd{%
+ \bookmarksetup{startatroot}%
+ \bookmark[named=LastPage, level=0]{Last page}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set up theorems and such
+
+% we only have theorems and a question in the introduction
+\newtheorem{Theorem}{Theorem}[section]
+\renewcommand\theTheorem{\arabic{Theorem}}
+\theoremstyle{definition}
+
+\newtheorem{theorem}[Theorem]{Theorem}
+\newtheorem{Question}[Theorem]{Question}
+\newtheorem{question}[Theorem]{Question}
+
+% and after that the rest
+\newtheorem{Proposition}{Proposition}[section]
+
+\newtheorem{proposition}[Proposition]{Proposition}
+
+\newtheorem{lemma}[Proposition]{Lemma}
+\newtheorem{Lemma}[Proposition]{Lemma}
+
+\newtheorem{corollary}[Proposition]{Corollary}
+\newtheorem{Corollary}[Proposition]{Corollary}
+
+\newtheorem{conjecture}[Proposition]{Conjecture}
+\newtheorem{Conjecture}[Proposition]{Conjecture}
+
+\theoremstyle{definition}
+
+\newtheorem{example}[Proposition]{Example}
+\newtheorem{Example}[Proposition]{Example}
+
+\newtheorem{claim}[Proposition]{Claim}
+
+% answer enviroment without numbering
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \numberwithin{equation}{section}
+
+% \newcommand\claim[2][.8]{%
+%   \begin{minipage}[c]{#1\displaywidth}%
+%   \itshape
+%   #2
+%   \end{minipage}%
+% }
+
+% \newmdenv[tikzsetting={draw=blue,fill=red,fill opacity=0}]{answer}
+
+
+% let us make the remark style from amsthm.sty have the same pre/postskips
+% as the rest of the proclamations
+\makeatletter
+\def\th@remark{%
+  \thm@headfont{\itshape}%
+  \normalfont 
+  \thm@preskip\topsep % commented this out: \divide\thm@preskip\tw@
+  \thm@postskip\thm@preskip
+}
+\makeatletter
+\theoremstyle{remark}
+\newtheorem{Remark}[Proposition]{Remark}
+
+% use etoolbox to patch the Remark and Example environments to add a
+% \lozenge at the end. We do this in this way (and not just a
+% \AtEndEnvironment{theorem}{\null\hfill\qedsymbol}) so that we can use
+% \qedhere in remarks...
+\AtBeginEnvironment{Example}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
+\AtEndEnvironment{Example}{\popQED}
+\AtBeginEnvironment{Remark}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
+\AtEndEnvironment{Remark}{\popQED}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set up the color boxes 
+
+% a common style for all color boxes
+\tcbset{common/.style={
+  breakable,
+  enhanced jigsaw,
+  before skip=10pt,
+  colback=#1,
+  grow to right by=0.25cm,
+  grow to left by=0.25cm,
+  if odd page={right=0.25cm,left=0.25cm}{right=0.25cm,left=0.25cm},
+  toggle enlargement,
+  boxsep=0pt,
+  toprule=0.07mm,
+  bottomrule=0.07mm,
+  leftrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+  }
+}
+
+% tcolorboxes forget the parindent, so we save its value when we start
+% and reset it in each tcolorbox
+\newlength{\normalparindent}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+\tcbset{before upper={\setlength{\parindent}{\normalparindent}}} 
+
+% colorize the theorems and such 
+\colorlet{thm-color}{blue!5}
+\definecolor{q-color}{HTML}{ffb703}
+\colorlet{question-color}{q-color!10}
+\colorlet{proof-color}{green!5}
+\colorlet{remark-color}{blue!5}
+\tcolorboxenvironment{proof}{common={proof-color}}       % smalls
+\tcolorboxenvironment{Proof}{common={proof-color}}       % Caps
+
+\tcolorboxenvironment{remark}{common={remark-color}}    % smalls
+\tcolorboxenvironment{Remark}{common={remark-color}}    % Caps
+
+\tcolorboxenvironment{question}{common={question-color}}   % smalls
+\tcolorboxenvironment{Question}{common={question-color}}   % Caps
+
+\foreach \t in {
+  Proposition, Theorem, Lemma, Corollary, Conjecture, Claim
+  proposition, theorem, lemma, corollary, conjecture, claim}
+{
+  \expandafter\tcolorboxenvironment\expandafter{\t}{
+      common={thm-color},
+  }
+}
+
+
+\colorlet{answer-color}{green!0}
+
+\newmdenv[%
+  skipabove=12pt,
+  skipbelow=12pt,
+  innertopmargin=12pt,
+  leftmargin=-5pt,
+  rightmargin=-5pt, 
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innerbottommargin=12pt,
+  backgroundcolor={answer-color},
+  linewidth=0,
+  % everyline=true,
+  % roundcorner=3pt,
+  tikzsetting={draw=blue,fill={answer-color},fill opacity=0}
+]{answer}%
+
+\tcolorboxenvironment{answer}{common={answer-color}}
+
+% reset theorem and such counters at the beginning of each answer
+\AtBeginEnvironment{problem}{%
+  % \setcounter{Theorem}{0}
+  % \setcounter{Proposition}{0}
+  % \setcounter{Lemma}{0}
+  % \setcounter{Corollary}{0}
+  % \setcounter{Conjecture}{0}
+  % \setcounter{question}{0}
+  \setcounter{Theorem}{0}
+  \setcounter{Proposition}{0}
+}
+
+% we use this for all enumerations in theorems
+\newlist{thmlist}{enumerate}{1}
+\setlist[thmlist]{
+        nolistsep,
+        ref={\mdseries\textup{(\emph{\roman*})}},
+        label={\mdseries\textup{(\emph{\roman*})}},
+        listparindent=\parindent
+        }
+\newcommand\thmitem[1]{\textup{(\emph{\romannumeral #1})}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the table of contents
+
+\makeatletter
+\titlecontents{section}
+  [3.8em] 
+  {}
+  {\textsection\thecontentslabel. }
+  {}
+  {\titlerule*[0.25pc]{.}\contentspage}
+
+\renewcommand\tableofcontents{%
+    \begingroup
+    \centering
+    {\normalsize\bfseries\contentsname}\par
+    \small
+    \vspace*{0.5pc}%
+    \begin{minipage}{.7\textwidth}
+    \@starttoc{toc}%
+    \end{minipage}\par
+    \endgroup
+    \vspace*{2pc}
+    }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% captions and floats
+
+\captionsetup{skip=1pc}
+\setlength{\textfloatsep}{3pc plus 5.0pt minus 5.0pt}
+
+% normal itemizations, with spaced items consisting of paragraphs,
+\setlist[itemize]{itemsep=1ex, listparindent=1em, parsep=0pt, label=\textbullet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header BOX
+\newcommand{\handout}[6]{
+  \noindent
+  \begin{center}
+  \setlength{\fboxrule}{1.2pt}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { \textbf{#6} \hfill {\bf #2} }
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill {\textbf{ #5 }}  \hfill} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\textit{\textbf{#3 \hfill #4}}} }
+    }
+  }
+  \setlength{\fboxrule}{0.2pt}
+  \end{center}
+  \vspace*{4mm}
+}
+
+% Header BOX
+\newcommand{\PSET}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{PSET #1}{#5}}
+
+\newcommand{\homework}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Homework assigned #1}{#5}}
+
+\newcommand{\exam}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Exam #1}{#5}}
+
+\newcommand{\midterm}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Mid-Term Exam #1}{#5}}
+
+\newcommand{\reading}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Reading assigned #1}{#5}}
+
+\newcommand{\quiz}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Quiz #1}{#5}}
+
+\newcommand{\statement}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{Participation Statement #1}{#5}}
+
+\newcommand{\final}[5]{\handout{#1}{#2}{Prof.\ #3}{Student: #4}{FINAL EXAM --- #1}{#5}}
+% Credit Statement
+\newcommand{\CreditStatement}[1]{
+  \noindent
+  \begin{center} {
+    \bf Credit Statement
+  }
+  \end{center}
+  { #1 }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem Counter
+\newcounter{problem}
+\setcounter{problem}{0}
+
+\newenvironment{problem}[1][]%
+{%
+\ifx&#1&%
+  % #1 is empty
+  \stepcounter{problem}
+\else
+  % #1 is nonempty
+  \setcounter{problem}{#1}
+\fi
+\setcounter{section}{\value{problem}}
+\setcounter{equation}{0}
+\vspace{.2cm} \noindent {\center  \textbf{\\ Problem \arabic{problem}.\\}} {}~%
+}{%
+% \vspace{.2cm}%
+}
+
+
+\newcommand\isom{\mathrel{\stackon[-0.1ex]{\makebox*{\scalebox{1.08}{\AC}}{=\hfill\llap{=}}}{{\AC}}}}
+\newcommand\nvisom{\rotatebox[origin=cc] {-90}{$ \isom $}}
+\newcommand\visom{\rotatebox[origin=cc] {90} {$ \isom $}}
+
+
+% matrices -- vertical separators
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols{ c}]{%
+  \hskip -\arraycolsep{}
+  \let\@ifnextchar\new@ifnextchar{}
+  \array{#1}}
+\makeatother
+
+%%
+\lstset{frame=tb,
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\color{codepurple},
+  keywordstyle=\color{NavyBlue},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize\bfseries,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=t,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+  % escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+}
+
+\tikzset{
+  between/.style args={#1 and #2}{
+        at = ($(#1)!0.5!(#2)$)
+  }
+}
+\usetikzlibrary{automata, positioning, arrows, calc}
+\tikzset{
+  between base/.style args={#1 and #2}{
+      between=#1.base and #2.base
+  }
+}
+
+\tikzset{
+  ->, % makes the edges directed
+  >=stealth', % makes the arrow heads bold
+  node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+  every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+  initial text=$ $, % sets the text that appears on the start arrow
+}
+
+% for package parskip
+\tcbset{
+  parskip/.style={
+    before={\par\pagebreak[0]\parindent=0pt},
+    after={\parfillskip=0pt\par},
+  },
+}

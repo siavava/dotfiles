@@ -37,3 +37,6 @@ fish.functions/*nvm*
 
 !globals
 !globals/*
+
+!common/*
+!common.tex

@@ -1,0 +1,422 @@
+
+
+\DeclareMathOperator{\Res}{Res}
+\let\hom\relax
+\DeclareMathOperator{\hom}{Hom}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\LND}{LND}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\InnDer}{InnDer}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\slope}{sl}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\img}{img}
+\let\H\relax
+\DeclareMathOperator\H{H}
+\DeclareMathOperator\HH{HH}
+
+\DeclarePairedDelimiter\lin{\langle}{\rangle}
+\DeclarePairedDelimiter\gen{\langle}{\rangle}
+
+\newcommand\Alg{\mathrm{Alg}}
+\newcommand\inter[1]{\llbracket#1\rrbracket}
+\newcommand\normalorder[1]{{:}\mkern1mu#1\mkern1.6mu{:}}
+\def\lact{\mathbin\triangleright}
+
+% textual claims in equations
+% \newcommand\claim[2][.8]{%
+%   \begin{minipage}[c]{#1\displaywidth}%
+%   \itshape
+%   #2
+%   \end{minipage}%
+% }
+
+% centered/rightflush cases, from https://tex.stackexchange.com/a/27523/525
+% but with a star version
+\makeatletter
+\newcases{c-dcases*}{\qquad}{%
+  \hfil$\m@th\displaystyle{##}$\hfil}{##\hfil}{\lbrace}{.}
+\newcases{r-dcases*}{\qquad}{%
+  \hfil$\m@th\displaystyle{##}$}{##\hfil}{\lbrace}{.}
+\makeatother
+
+% markup for new terms
+\newcommand\newterm[2][]{\textbf{\itshape\color{blue!50!black}#2}}
+
+\ifoptionfinal{}{
+  \usepackage[draft]{showlabels}
+  \renewcommand\showlabelfont{\small\sffamily\color{green!70!black}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom colors
+
+\definecolor{crimson}{rgb}{0.86, 0.08, 0.24}
+\definecolor{teal}{rgb}{0.0, 0.5, 0.5}
+\definecolor{zaffre}{rgb}{0.0, 0.08, 0.66}
+\definecolor{DarkOliveGreen}{rgb}{0.33, 0.42, 0.18}
+\definecolor{green}{rgb}{0.0, 0.5, 0.0}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\definecolor{electriclime}{rgb}{0.8, 1.0, 0.0}
+\definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+\newcommand{\crim}{\textcolor{crimson}}
+\newcommand{\teal}{\textcolor{teal}}
+\newcommand{\zaff}{\textcolor{zaffre}}
+\newcommand{\black}{\textcolor{black}}
+\newcommand{\darkgreen}{\textcolor{DarkOliveGreen}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\grey}{\textcolor{grey}}
+\newcommand{\blue}{\textcolor{blue}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MATH SYMBOLS
+\let\AA\relax
+\newcommand\AA{\mathbb{A}}
+\newcommand\A{\mathbb{A}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand\NN{\mathbb{N}}
+\newcommand\N{\mathbb{N}}
+
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand\QQ{\mathbb{Q}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand\CC{\mathbb{C}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand\PP{\mathbb{P}}
+
+\newcommand\kk{\Bbbk}
+
+\newcommand\GG{\mathbb{G}}
+\newcommand\E{\mathscr{E}}
+\newcommand\op{\mathsf{op}}
+\newcommand\B{\mathcal{B}}
+\newcommand\Nil{\mathfrak{N}}
+\renewcommand\d{\mathrm{d}}
+\newcommand\W{\mathscr{W}}
+\newcommand\X{\mathscr{X}}
+
+\let\epsilon\varepsilon
+\let\emptyset\varnothing
+
+\newcommand\id{\mathsf{id}}
+\newcommand\place{\mathord-}
+\newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+
+% PROBABILITY
+\newcommand{\Hd}{\texttt{\color{BrickRed}H}}
+\newcommand{\Tl}{\texttt{T}}
+\newcommand{\EE}{\mathop{\mathbb{E}}}
+\newcommand{\indic}{\mathbb{1}}
+\DeclareMathOperator{\Var}{Var}
+
+% CALCULUS
+\renewcommand{\d}{\text{ d}}
+\DeclareMathOperator{\erf}{\mathbf{erf}}
+\DeclareMathOperator{\conv}{\mathbf{conv}}
+
+
+% FRAKTUR
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fD}{\mathfrak{D}}
+\newcommand{\fE}{\mathfrak{E}}
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fH}{\mathfrak{H}}
+\newcommand{\fI}{\mathfrak{I}}
+\newcommand{\fJ}{\mathfrak{J}}
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fQ}{\mathfrak{Q}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fT}{\mathfrak{T}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fV}{\mathfrak{V}}
+\newcommand{\fW}{\mathfrak{W}}
+\newcommand{\fX}{\mathfrak{X}}
+\newcommand{\fY}{\mathfrak{Y}}
+\newcommand{\fZ}{\mathfrak{Z}}
+
+% CAL
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% BOLD smalls
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\be}{\mathbf{e}}
+% \renewcommand{\bf}{\mathbf{f}}
+\newcommand{\bg}{\mathbf{g}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bt}{\mathbf{t}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\tbp}{\mathbf{\widetilde{p}}}
+
+\newcommand{\bzero}{\mathbf{0}}
+\newcommand{\bone}{\mathbf{1}}
+
+% BOLD CAPITALS
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+% \newcommand{\eps}{\varepsilon}
+% \renewcommand*{\epsilon}{\varepsilon}
+% \renewcommand*{\phi}{\varphi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SQL Symbols
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENUMS
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+% enumalph
+\newenvironment{enumalph}{
+  \begin{enumerate}[label=(\alph*)]
+}{\end{enumerate}}
+
+% enumroman
+\newenvironment{enumroman}{
+  \begin{enumerate}[label=(\roman*)]
+}{\end{enumerate}}
+
+% enumarabic
+\newenvironment{enumarabic}{
+  \begin{enumerate}[label=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+\newenvironment{enumarabic*}{
+  \begin{enumerate}[label*=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SET THEORY
+
+\DeclareSymbolFont{CMsymbols}{OMS}{cmsy}{m}{n}
+\SetSymbolFont{CMsymbols}{bold}{OMS}{cmsy}{b}{n}
+\DeclareMathSymbol{\foralll}{\mathord}{CMsymbols}{"38}
+\DeclareMathSymbol{\existss}{\mathord}{CMsymbols}{"39}
+
+\newcommand{\nequiv}{\not\equiv}
+\renewcommand{\notin}{\not\in}
+\renewcommand{\forall}{\foralll\;}
+\renewcommand{\exists}{\existss\;}
+
+\DeclareRobustCommand{\set}[1]{\left\{#1\right\}}
+\renewcommand{\vector}[1]{\left\langle #1 \right\rangle}
+\newcommand*{\parens}[1]{\left( #1 \right)}
+\newcommand*{\brackets}[1]{\left[ #1 \right]}
+\newcommand*{\braces}[1]{\left\{ #1 \right\}}
+
+\def \given {\; \vert \;}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUNCTIONS
+\DeclareMathOperator{\cost}{cost}
+\DeclareMathOperator{\len}{len}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\wt}{wt}
+\renewcommand{\log}[1]{\, \mathbf{log}\; #1 \,}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ANALYSIS
+\DeclareRobustCommand{\lub}[1]{\; \mathbf{l.u.b.}\; #1}
+\DeclareRobustCommand{\glb}[1]{\; \mathbf{g.l.b.}\; #1}
+\DeclareRobustCommand{\ball}[2]{\mathbf{B}_{#1}\left(#2\right)}
+
+% uniform convergence double-arrows
+\def \uto {\rightrightarrows}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }
+}
+
+% correspondence
+\def \corr{\leftrightarrow}
+
+% dimension
+\def \dim {\mathbf{dim}}
+
+%  make sup, lim, inf, max, min, limsup, liminf, argmax, argmin, det, Pr, and gcd bold
+\renewcommand*{\sup}{\mathop{\mathbf{sup}}} % for sup
+\renewcommand*{\inf}{\mathop{\mathbf{inf}}} % for sup
+\renewcommand*{\limsup}{\mathop{\mathbf{lim\,sup}}} % for sup
+\renewcommand*{\liminf}{\mathop{\mathbf{lim\,inf}}} % for sup
+\renewcommand*{\lim}{\mathop{\mathbf{lim}}} % for sup
+\renewcommand*{\max}{\mathop{\mathbf{max}}} % for sup
+\renewcommand*{\min}{\mathop{\mathbf{min}}} % for sup
+\newcommand*{\argmax}{\mathop{\mathbf{arg\,max}}} % for sup
+\newcommand*{\argmin}{\mathop{\mathbf{arg\,min}}} % for sup
+\renewcommand*{\det}{\mathop{\mathbf{det}}} % for sup
+\renewcommand*{\Pr}{\mathop{\mathbf{Pr}}} % for sup
+\renewcommand*{\gcd}{\mathop{\mathbf{gcd}}} % for sup
+
+% \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+
+\DeclareRobustCommand{\Abs}[1]{\left\lVert #1 \right\rVert }
+
+\newcommand{\defi}[1]{\textsf{#1}} % for defined terms
+
+\renewcommand{\baselinestretch}{1.5} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ALGEBRA
+\newcommand{\GL}{\mathrm{GL}}
+% \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\ev}{ev}
+
+% \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\opspan}{span}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LOGIC
+
+% \usepackage{MnSymbol}
+\def \backmodels{\leftmodels}
+\DeclareRobustCommand\Iff{\;\Longleftrightarrow\;}
+\DeclareRobustCommand\iff{\;\leftrightarrow\;}
+\DeclareRobustCommand\lto{\rightarrow}
+\DeclareRobustCommand\backimplies{\Longleftarrow}
+\newcommand{\bigland}{\bigwedge}
+\def \vbar{\overline{v}}
+\def \sbar{\overline{s}}
+\def \deduces{\vdash}
+\def \isdeduced{\dashv}
+\def \To{\Rightarrow}
+\def \Th{\text{Th }}
+\def \Mod{\text{Mod }}
+\DeclareRobustCommand\derives{\Rightarrow}
+\def \Cn { \text{Cn }}
+
+\def \EqDFA {\textsc{EQ}_{\textsc{DFA}}}
+\def \sfP {\textsf{P}}
+\def \sfNP {\textsf{NP}}
+\def \True {\textsc{True }}
+\def \False {\textsc{False }}
+
+
+% LINEAR ALGEBRA
+% matrices -- vertical separators
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols{ c}]{%
+  \hskip -\arraycolsep{}
+  \let\@ifnextchar\new@ifnextchar{}
+  \array{#1}}
+\makeatother
+
+% custom functions.
+\renewcommand{\gcd}[2]{\mathbf{gcd}\;(#1,\;#2)}
+\newcommand{\lcm}[2]{\mathbf{lcm}\;(#1,\;#2)}
+\newcommand{\Therefore}{\therefore\;}
+\newcommand{\However}{\dot{}\hspace{.045in}.\hspace{.045in} \dot{}\hspace{.095in}}
+
+\DeclareRobustCommand{\step}{\bigskip\noindent}
+
+% matrix shorthands
+\newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+
+\DeclareRobustCommand{\rank}{\mathbf{Rank}\, }
+\DeclareRobustCommand{\nullity}{\mathbf{Nullity}\, }
+\DeclareRobustCommand{\col}{\mathbf{Col}\, }
+\DeclareRobustCommand{\row}{\mathbf{Row}\, }
+\DeclareRobustCommand{\im}{\mathbf{im}\, }
+\DeclareRobustCommand{\spn}{\mathbf{Span}\, }
+\DeclareRobustCommand{\nul}{\mathbf{Nul}\, }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FOOTNOTE
+
+\renewcommand{\thefootnote}{\arabic{footnote}} 
