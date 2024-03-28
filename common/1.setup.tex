@@ -167,25 +167,46 @@
 }
 
 
-\colorlet{answer-color}{green!0}
+\colorlet{answer-color}{blue!5}
 
-\newmdenv[%
-  skipabove=12pt,
-  skipbelow=12pt,
-  innertopmargin=12pt,
-  leftmargin=-5pt,
-  rightmargin=-5pt, 
-  innerleftmargin=12pt,
-  innerrightmargin=12pt,
-  innerbottommargin=12pt,
-  backgroundcolor={answer-color},
-  linewidth=0,
-  % everyline=true,
-  % roundcorner=3pt,
-  tikzsetting={draw=blue,fill={answer-color},fill opacity=0}
-]{answer}%
+% \newmdenv[%
+%   skipabove=12pt,
+%   skipbelow=12pt,
+%   innertopmargin=12pt,
+%   leftmargin=-5pt,
+%   rightmargin=-5pt, 
+%   innerleftmargin=12pt,
+%   innerrightmargin=12pt,
+%   innerbottommargin=12pt,
+%   backgroundcolor={answer-color},
+%   linewidth=0,
+%   % everyline=true,
+%   % roundcorner=3pt,
+%   tikzsetting={draw=blue,fill={answer-color},fill opacity=0}
+% ]{answer}%
 
-\tcolorboxenvironment{answer}{common={answer-color}}
+% a common style for all color boxes
+\tcbset{answer/.style={
+  breakable,
+  enhanced jigsaw,
+  before skip=10pt,
+  colback=#1,
+  grow to right by=0.25cm,
+  grow to left by=0.25cm,
+  if odd page={right=0.25cm,left=0.25cm}{right=0.25cm,left=0.25cm},
+  toggle enlargement,
+  boxsep=10pt,
+  toprule=.1mm,
+  bottomrule=.1mm,
+  leftrule=0mm,
+  rightrule=0mm,
+  arc=0mm,
+  }
+}
+
+\newtcolorbox{answer}{answer={answer-color}}
+
+% \tcolorboxenvironment{answer}{common={answer-color}}
 
 % reset theorem and such counters at the beginning of each answer
 \AtBeginEnvironment{problem}{%
@@ -251,11 +272,13 @@
   \setlength{\fboxrule}{1.2pt}
   \framebox{
     \vbox{
+      \vspace{2mm}
       \hbox to 5.78in { \textbf{#6} \hfill {\bf #2} }
       \vspace{4mm}
       \hbox to 5.78in { {\Large \hfill {\textbf{ #5 }}  \hfill} }
       \vspace{2mm}
       \hbox to 5.78in { {\textit{\textbf{#3 \hfill #4}}} }
+      \vspace{1.5mm}
     }
   }
   \setlength{\fboxrule}{0.2pt}
