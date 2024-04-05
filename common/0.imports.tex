@@ -22,7 +22,7 @@
 \usepackage{xifthen}
 \usepackage{tikz}
 \usepackage[skins, breakable, hooks]{tcolorbox}
-\usetikzlibrary{calc, cd}
+% \usetikzlibrary{calc, cd, shapes.geometric}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % set up the page geometry
@@ -106,3 +106,11 @@
 
 %%% this two following packages are used in the format I have to use
 \usepackage[parfill]{parskip}
+
+% algorithms
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
+% \usepackage{algorithmicx}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}  % for vertical bars on left
+\SetKwComment{comment}{$\triangleright$  }{}
+\IncMargin{20pt}
