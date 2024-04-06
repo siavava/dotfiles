@@ -146,10 +146,10 @@
 \colorlet{thm-color}{blue!5}
 \definecolor{q-color}{HTML}{ffb703}
 \colorlet{question-color}{q-color!10}
-\colorlet{proof-color}{green!5}
+\colorlet{claim-color}{green!5}
 \colorlet{remark-color}{blue!5}
-\tcolorboxenvironment{proof}{common={proof-color}}       % smalls
-\tcolorboxenvironment{Proof}{common={proof-color}}       % Caps
+\tcolorboxenvironment{claim}{common={claim-color}}       % smalls
+\tcolorboxenvironment{Claim}{common={claim-color}}       % Caps
 
 \tcolorboxenvironment{remark}{common={remark-color}}    % smalls
 \tcolorboxenvironment{Remark}{common={remark-color}}    % Caps
@@ -158,8 +158,8 @@
 \tcolorboxenvironment{Question}{common={question-color}}   % Caps
 
 \foreach \t in {
-  Proposition, Theorem, Lemma, Corollary, Conjecture, Claim
-  proposition, theorem, lemma, corollary, conjecture, claim}
+  Proposition, Theorem, Lemma, Corollary, Conjecture
+  proposition, theorem, lemma, corollary, conjecture}
 {
   \expandafter\tcolorboxenvironment\expandafter{\t}{
       common={thm-color},
