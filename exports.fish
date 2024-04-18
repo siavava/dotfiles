@@ -17,7 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # vscode error fix
 # see: https://github.com/conda/conda/issues/13451#issuecomment-1896097903
-export CONDA_PREFIX=$CONDA_ROOT
+# export CONDA_PREFIX=$CONDA_ROOT
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
