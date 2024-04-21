@@ -21,3 +21,6 @@ alias search='history | grep'
 
 # redeploy blog
 alias redeploy='curl -X POST https://api.netlify.com/build_hooks/658d9d835e2c050092fdfe38'
+
+alias hey='ollama run llama3'
+alias HEY='hey --verbose'
