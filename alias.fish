@@ -24,3 +24,6 @@ alias redeploy='curl -X POST https://api.netlify.com/build_hooks/658d9d835e2c050
 
 alias hey='ollama run llama3'
 alias HEY='hey --verbose'
+
+alias hey2='ollama run llama3:70b'
+alias HEY2='hey2 --verbose'
