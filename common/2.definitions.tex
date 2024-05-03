@@ -355,7 +355,9 @@
 \newcommand{\abs}[1]{\left\vert #1 \right\vert}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
 \newcommand{\dom}[1]{\mathbf{dom}\left(#1\right)}
+\newcommand{\range}[1]{\mathbf{range}\left(#1\right)}
 
+\newcommand{\graph}[1]{\mathbf{graph}\left(#1\right)}
 \DeclareRobustCommand{\Abs}[1]{\left\lVert #1 \right\rVert }
 
 \newcommand{\defi}[1]{\textsf{#1}} % for defined terms
@@ -405,6 +407,10 @@
 \def \True {\textsc{True }}
 \def \False {\textsc{False }}
 
+% converge
+\def \converges {\downarrow}
+\def \diverges {\uparrow}
+
 
 % LINEAR ALGEBRA
 % matrices -- vertical separators
@@ -439,3 +445,6 @@
 % FOOTNOTE
 
 \renewcommand{\thefootnote}{\arabic{footnote}} 
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
