@@ -297,7 +297,7 @@
 \renewcommand{\forall}{\foralll\;}
 \renewcommand{\exists}{\existss\;}
 
-\DeclareRobustCommand{\set}[1]{\left\{#1\right\}}
+\DeclareRobustCommand{\set}[1]{\left\{\; #1 \; \right\}}
 \renewcommand{\vector}[1]{\left\langle #1 \right\rangle}
 \newcommand*{\parens}[1]{\left( #1 \right)}
 \newcommand*{\brackets}[1]{\left[ #1 \right]}
@@ -410,6 +410,12 @@
 % converge
 \def \converges {\downarrow}
 \def \diverges {\uparrow}
+
+\def \convergesto {\downarrow = }
+
+\def \join {\oplus}
+\def \bigjoin {\bigoplus}
+\def \meet {\otimes}
 
 
 % LINEAR ALGEBRA
