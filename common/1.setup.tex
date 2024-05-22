@@ -71,6 +71,7 @@
 \theoremstyle{definition}
 
 \newtheorem{example}[Proposition]{Example}
+\newtheorem{examples}[Proposition]{Examples}
 \newtheorem{definition}[Proposition]{Definition}
 
 \newtheorem{claim}[Proposition]{Claim}
@@ -104,15 +105,18 @@
 \makeatletter
 \theoremstyle{remark}
 \newtheorem{Remark}[Proposition]{Remark}
+\newtheorem{remark}[Proposition]{Remark}
 
 % use etoolbox to patch the Remark and Example environments to add a
 % \lozenge at the end. We do this in this way (and not just a
 % \AtEndEnvironment{theorem}{\null\hfill\qedsymbol}) so that we can use
 % \qedhere in remarks...
-\AtBeginEnvironment{Example}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
-\AtEndEnvironment{Example}{\popQED}
-\AtBeginEnvironment{Remark}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
-\AtEndEnvironment{Remark}{\popQED}
+\AtBeginEnvironment{example}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
+\AtEndEnvironment{example}{\popQED}
+\AtBeginEnvironment{examples}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
+\AtEndEnvironment{examples}{\popQED}
+\AtBeginEnvironment{remark}{\def\qedsymbol{$\lozenge$}\pushQED{\qed}}
+\AtEndEnvironment{remark}{\popQED}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % set up the color boxes 
@@ -235,7 +239,7 @@
 
 \makeatletter
 \titlecontents{section}
-  [3.8em] 
+  [0.8em] 
   {}
   {\textsection\thecontentslabel. }
   {}
@@ -247,7 +251,7 @@
     {\normalsize\bfseries\contentsname}\par
     \small
     \vspace*{0.5pc}%
-    \begin{minipage}{.7\textwidth}
+    \begin{minipage}{.6\textwidth}
     \@starttoc{toc}%
     \end{minipage}\par
     \endgroup
