@@ -469,6 +469,10 @@
 \def \xto {\xrightarrow}
 \def \xlto {\xlongrightarrow}
 % \newcommand{\bar}[1]{\overline{#1}}
+\makeatletter
+\newcommand*\dotp{\mathpalette\dotp@{1}}
+\newcommand*\dotp@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
