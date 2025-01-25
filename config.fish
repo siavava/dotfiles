@@ -12,10 +12,6 @@ export GPG_TTY=$(tty)
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
-# zoxide
-zoxide init fish --cmd cd | source
-
 # command aliases
 source "$HOME/alias.fish"
 
@@ -24,3 +20,6 @@ source "$HOME/prompt.fish"
 
 # app exports
 source "$HOME/exports.fish"
+
+# zoxide
+zoxide init fish --cmd cd | source

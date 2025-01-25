@@ -349,3 +349,9 @@ DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0
 export DISPLAY
 
 [ -f "/root/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+
+
+#######
+# ghcup
+#######
+export PATH="$PATH:$HOME/.ghcup/bin"
