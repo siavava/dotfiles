@@ -307,3 +307,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 #### ghc
 export PATH="$PATH:$HOME/.ghcup/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/siavava/.lmstudio/bin"

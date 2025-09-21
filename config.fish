@@ -23,3 +23,6 @@ source "$HOME/exports.fish"
 
 # zoxide
 zoxide init fish --cmd cd | source
+
+# override system rust binaries with rustup ones
+fish_add_path -Ppmg /Users/siavava/.cargo/bin

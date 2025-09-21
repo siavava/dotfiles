@@ -355,3 +355,6 @@ export DISPLAY
 # ghcup
 #######
 export PATH="$PATH:$HOME/.ghcup/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/siavava/.lmstudio/bin"
