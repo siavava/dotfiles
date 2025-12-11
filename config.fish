@@ -26,3 +26,4 @@ zoxide init fish --cmd cd | source
 
 # override system rust binaries with rustup ones
 fish_add_path -Ppmg /Users/siavava/.cargo/bin
+fish_add_path -PPmg /Users/siavava/.ghcup/bin
