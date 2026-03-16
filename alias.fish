@@ -27,3 +27,6 @@ alias HEY='hey --verbose'
 
 alias hey2='ollama run llama3:70b'
 alias HEY2='hey2 --verbose'
+
+# use better-featured `hub` or `git` operations
+alias git='hub'
