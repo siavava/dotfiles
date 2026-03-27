@@ -13,11 +13,16 @@
 !.condarc
 !.vimrc
 !.nuxtrc
-!gpg.key
 !.chktexrc
 !.bash_aliases
 !.bashrc
 !.bash_profile
+
+# include gpg configs
+!gpg.key
+
+!.gnupg
+!.gnupg/*.conf
 
 # include common tex files
 !latex-common
