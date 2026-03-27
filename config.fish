@@ -8,6 +8,7 @@ end
 
 # gnupg terminal to use
 export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
 
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
