@@ -46,3 +46,13 @@ globals/macros.tex
 
 !common/*
 !common.tex
+
+# do not ignore .claude
+!.claude
+
+# ignore everything inside .claude
+.claude/*
+
+# track custom commands
+!.claude/commands
+!.claude/commands/*
