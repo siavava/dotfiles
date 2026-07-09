@@ -56,3 +56,8 @@ globals/macros.tex
 # track custom commands
 !.claude/commands
 !.claude/commands/*
+
+# track custom skills
+!.claude/skills
+!.claude/skills/**/*
+.claude/skills/find-skills
