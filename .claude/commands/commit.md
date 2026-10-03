@@ -25,7 +25,13 @@ Follow these rules exactly:
 
 - Use the established convention: `(type): <short, lowercase description>`.
 - Types in use: `feat`, `fix`, `update`, `cleanup` (use the one that fits).
-- Keep the description concise and descriptive, matching the existing `git log` style.
+- **The description is an action**: start it with an imperative verb (add, fix,
+  migrate, move, drop, rewrite, rename, test, …) saying what the commit does.
+  - BAD: `(feat): the timeline as a route, threaded through the page`
+  - GOOD: `(feat): migrate timeline to a separate route`
+- Keep the subject to one short line, matching the existing `git log` style.
+- Add a body only where context is genuinely needed, as one short paragraph (a few
+  lines at most). No essays, no bullet lists.
 
 ## Hard rules
 
