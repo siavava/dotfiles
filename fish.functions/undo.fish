@@ -10,13 +10,14 @@ function undo
   else
     for i in (seq (count $argv))
       set port_num $argv[$i]
-      set pid $(lsof -t -i:$port_num)
+      set pids (lsof -t -i:$port_num)
 
-      # if pid is not empty, kill it
-      if test $pid
-        printf "KILLING PROCESS $pid ON PORT $port_num\n"
-        kill "$pid"
-        printf "KILLED PROCESS $pid ON PORT $port_num\n\n"
+      if test (count $pids) -gt 0
+        for pid in $pids
+          printf "KILLING PROCESS $pid ON PORT $port_num\n"
+          kill "$pid"
+          printf "KILLED PROCESS $pid ON PORT $port_num\n\n"
+        end
       else
         printf "\n\nNO PROCESS RUNNING ON PORT $port_num\n\n"
       end
