@@ -53,6 +53,9 @@ globals/macros.tex
 # ignore everything inside .claude
 .claude/*
 
+# track the global instructions
+!.claude/CLAUDE.md
+
 # track custom commands
 !.claude/commands
 !.claude/commands/*
