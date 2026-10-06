@@ -24,6 +24,7 @@
 
 [alias]
 	ac = commit -am
+	alt = !git -c user.name=evilalt -c user.email=amittaijoel@gmail.com -c commit.gpgsign=false
 
 [pull]
 	rebase = true
