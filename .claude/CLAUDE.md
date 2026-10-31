@@ -70,3 +70,7 @@ Every pull request, in every repository, has this shape:
   redesign, where a full table would run long, carries the most significant
   samples instead, five at most.
 - No Claude attribution anywhere in the body.
+- Never auto-merge, and never arm GitHub's merge-when-ready: repositories
+  here have no required checks, so it merges at once. A merge happens by
+  hand, after every check on the head commit has finished green, and only
+  when the user asks for it.
