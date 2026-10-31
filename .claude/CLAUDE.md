@@ -47,3 +47,26 @@ every subagent it spawns, in every repository.
 - An orchestrator checks for its subagents' stragglers before its own report:
   `ps` for processes whose arguments name the session's scratchpad, its
   worktree or the project, kill them, then report.
+
+# Pull requests
+
+Every pull request, in every repository, has this shape:
+
+- The title is the commit style: `(type): a lowercase clause`.
+- `## Why`: the problem or the gap in a paragraph or two, naming the design
+  document or rule it answers to where one exists.
+- `## What`: what the change does, as bullets whose first words are bold,
+  with files, routes, settings and constants in backticks, and a line on
+  what is deliberately left alone and why.
+- `## Verification`: what was run (lint, typecheck, specs with their counts,
+  the app on the local stack) and what was looked at, with the measured
+  facts rather than adjectives.
+- A `<details><summary>Files</summary>` block listing new and changed files.
+- A change with any visual or UI effect carries a table of before/after
+  snapshots: one row per place and state (surface, scheme, width), a
+  screenshot in each cell, hosted where the PR can show it (a path on the
+  PR's branch, or an image upload), with the computed values beside it
+  where a picture alone would not show the difference. A significant
+  redesign, where a full table would run long, carries the most significant
+  samples instead, five at most.
+- No Claude attribution anywhere in the body.
