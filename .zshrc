@@ -310,3 +310,14 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/siavava/.lmstudio/bin"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/siavava/.juliaup/bin' $path)
+export PATH
+# Tab completion for juliaup and julia channel selection
+[ -f "/Users/siavava/.julia/juliaup/completions/zsh.zsh" ] && source "/Users/siavava/.julia/juliaup/completions/zsh.zsh"
+
+# <<< juliaup initialize <<<

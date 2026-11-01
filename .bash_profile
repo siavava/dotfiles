@@ -37,3 +37,20 @@ unset __conda_setup
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/siavava/.lmstudio/bin"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/Users/siavava/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/Users/siavava/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+# Tab completion for juliaup and julia channel selection
+[ -f "/Users/siavava/.julia/juliaup/completions/bash.sh" ] && source "/Users/siavava/.julia/juliaup/completions/bash.sh"
+
+# <<< juliaup initialize <<<
