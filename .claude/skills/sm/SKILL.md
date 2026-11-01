@@ -38,6 +38,7 @@ gh api repos/{owner}/{repo} --jq '{allow_squash_merge, delete_branch_on_merge}'
 ```
 
 Order the merges:
+
 1. A pull request based on another one's branch: merge the other one first,
    then retarget this one to the real base.
 2. Pull requests that are already green go first.
@@ -110,6 +111,7 @@ If it times out, report the checks that are still pending.
 ### 7. Report
 
 For each pull request:
+
 - the merge sha;
 - what it needed before merging (a rebase, regenerated files, a body edit);
 - the result of the base run;
