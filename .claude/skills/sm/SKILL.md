@@ -1,6 +1,6 @@
 ---
 name: sm
-description: Squash-merge the open pull requests of the repository in the working directory. Each merge waits until every check on that pull request's head commit has finished green, and is pinned to that commit. They merge one at a time; after each, the next is rebased onto the moved base and waits for its new CI. Then it reports the base branch's run and bumps the merged repo in any parent repository that has it as a submodule. Works in any repo with gh. Trigger on "/sm", "squash-merge", "merge the open PRs once green", "merge when green".
+description: Squash-merge the open pull requests of the repository in the working directory. Each merge waits until every check on that pull request's head commit has finished green, and is pinned to that commit. They merge one at a time; after each, the next is rebased onto the moved base and waits for its new CI. A generated inventory the pull requests all rewrite is refreshed once, after the last merge. Then it reports the base branch's run and bumps the merged repo in any parent repository that has it as a submodule. Works in any repo with gh. Trigger on "/sm", "squash-merge", "merge the open PRs once green", "merge when green".
 ---
 
 # Squash-merge
@@ -22,6 +22,11 @@ description: Squash-merge the open pull requests of the repository in the workin
   - Rerun a check once only when its log shows a flake, and say so.
 - Always pass `--match-head-commit <sha>` with the sha the checks ran on.
 - Merge one pull request at a time.
+- A generated inventory that every pull request rewrites (a `.cloc`, a line
+  or file count, any tracked summary of the tree) is refreshed once per batch,
+  after the last merge, never in each pull request. It is not code. Refreshed
+  in each, it makes every pull request conflict with the one merged before it,
+  and each conflict costs a rebase and a full CI run.
 - Give every wait a deadline.
 - Follow the user's CLAUDE.md for identity, signing, bot trailers and
   attribution.
@@ -43,6 +48,12 @@ Order the merges:
    then retarget this one to the real base.
 2. Pull requests that are already green go first.
 3. Otherwise, oldest first.
+
+With two or more pull requests to merge, look for an inventory they all
+rewrite: the same generated file in each one's `gh pr diff <n> --name-only`.
+Take it off every branch before the first merge (step 4, "Inventories"), so
+the batch merges without conflicting on it. The checks then run once on each
+branch as it will merge, not again after every merge.
 
 ### 2. Prepare
 
@@ -70,16 +81,19 @@ workflow files:
 
 1. In a worktree of the branch: `git fetch origin <base>`, then
    `git rebase origin/<base>`.
-2. Generated files (lockfiles, inventories, snapshots, codegen): regenerate
-   them with the repo's own command. Never hand-merge them.
-3. Resolve mechanical conflicts. When resolving one means deciding what the
+2. Generated files the code depends on (lockfiles, snapshots, codegen):
+   regenerate them with the repo's own command. Never hand-merge them.
+3. Inventories (see Rules): do not regenerate them here. Drop the branch's
+   change to the file so it matches the base: remove the commit that only
+   refreshed it, or `git checkout origin/<base> -- <file>` and commit.
+4. Resolve mechanical conflicts. When resolving one means deciding what the
    code should do, ask.
-4. Run the repo's local lint, typecheck or fast tests. Confirm that commits
+5. Run the repo's local lint, typecheck or fast tests. Confirm that commits
    that were signed still are (`git log --format=%G?`).
-5. Push with `git push --force-with-lease`, only to a branch the user owns.
+6. Push with `git push --force-with-lease`, only to a branch the user owns.
    For someone else's branch, ask first. For a bot's, ask the bot to rebase
    (`@dependabot rebase`).
-6. Wait for the checks (step 5), then return to step 2.
+7. Wait for the checks (step 5), then return to step 2.
 
 ### 5. Wait
 
@@ -96,6 +110,12 @@ If it times out, report the checks that are still pending.
 - **Base run:** report the result of the base branch's push run for the last
   merge (`gh run list --branch <base> --limit 5`). A run that skips because the
   same tree already passed counts as passing.
+- **Inventories:** when the batch held an inventory back, refresh it now on
+  the base branch with the repo's own command, as one commit under the
+  identity the user's CLAUDE.md gives generated files. Land it the way the
+  repo lands changes: a last small pull request merged by the rules above, or
+  a direct push where the repo takes them. Do this before any parent bump, so
+  the bump pins a tree whose inventory is true.
 - **Parent repos:** a parent repo is one whose `.gitmodules` points at this
   repo's remote (`grep -l <repo> ../*/.gitmodules ../.gitmodules`). For each:
   1. Inside the submodule, fetch `origin <base>` and check out the merge sha.
@@ -116,5 +136,7 @@ For each pull request:
 - what it needed before merging (a rebase, regenerated files, a body edit);
 - the result of the base run;
 - the parent bump's sha and its run.
+
+Also give the inventory refresh's sha, when the batch held one back.
 
 List anything left unmerged, with the reason.
